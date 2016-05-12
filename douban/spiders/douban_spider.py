@@ -2,6 +2,8 @@
 from scrapy import Spider
 from scrapy.selector import Selector
 from douban.items import DoubanItem
+from scrapy.contrib.spiders import CrawlSpider,Rule
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 
 #解决编码错误
 import sys
@@ -36,7 +38,7 @@ class DoubanSpider(Spider):
 			item['rating_num'] = site.xpath('div[@class="bd"]/div[@class="star"]/span[@class="rating_num"]/text()').extract()
 			item['link'] = site.xpath('div[@class="hd"]/a/@href').extract()
 			items.append(item)
-			#yield item
+			#decode("unicode_escape")
 		open('douban.txt','a').write(str(items).decode("unicode_escape"))
 		open('douban.txt','a').close()
 		
