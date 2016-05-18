@@ -12,3 +12,4 @@ class DoubanItem(scrapy.Item):
     title = scrapy.Field()
     rating_num = scrapy.Field()
     link = scrapy.Field()
+    summary = scrapy.Field()
